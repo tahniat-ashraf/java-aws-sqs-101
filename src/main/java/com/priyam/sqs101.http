@@ -1,0 +1,23 @@
+###
+POST http://localhost:9099/sqs/message
+Content-Type: application/json
+
+{
+  "messageGroupId": "1",
+  "message" : {
+    "id" : "1",
+    "body" : "1"
+  }
+}
+
+###
+GET http://localhost:9099/sqs/message/a
+Accept: application/json
+
+###
+GET http://localhost:9099/sqs/message/b
+Accept: application/json
+
+###
+GET http://localhost:9099/sqs/message/c
+Accept: application/json
