@@ -3,7 +3,7 @@ POST http://localhost:9099/sqs/message
 Content-Type: application/json
 
 {
-  "messageGroupId": "1",
+  "messageGroupId": "2",
   "message" : {
     "id" : "1",
     "body" : "1"

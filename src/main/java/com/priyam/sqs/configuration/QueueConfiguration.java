@@ -6,11 +6,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import software.amazon.awssdk.services.sqs.SqsClient;
-import software.amazon.awssdk.services.sqs.model.CreateQueueRequest;
-import software.amazon.awssdk.services.sqs.model.GetQueueUrlRequest;
-import software.amazon.awssdk.services.sqs.model.QueueDoesNotExistException;
+import software.amazon.awssdk.services.sqs.model.*;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Order(2)
 @Configuration
@@ -36,17 +38,53 @@ public class QueueConfiguration {
         log.info("=> queueUrl()");
 
         try {
-            return getQueueUrl();
+            var queueUrl = getQueueUrl();
+            printAttributesOfQueue(queueUrl);
+            return queueUrl;
         } catch (QueueDoesNotExistException queueDoesNotExistException) {
             log.error("Queue doesn't exist. Creating the queue now ...");
+
+            // Enable long polling when creating a queue.
+            HashMap<QueueAttributeName, String> attributes = new HashMap<>();
+            attributes.put(QueueAttributeName.RECEIVE_MESSAGE_WAIT_TIME_SECONDS, "20");
+            attributes.put(QueueAttributeName.VISIBILITY_TIMEOUT, "120");
+            attributes.put(QueueAttributeName.FIFO_QUEUE, "true");
+            attributes.put(QueueAttributeName.CONTENT_BASED_DEDUPLICATION,"true");
+
+
             var createQueueRequest = CreateQueueRequest.builder()
                     .queueName(activeProfile + "-priyam-fifo-queue.fifo")
+                    .attributes(attributes)
                     .build();
 
             sqsClient().createQueue(createQueueRequest);
             return getQueueUrl();
         }
 
+    }
+
+    private void printAttributesOfQueue(String queueUrl) {
+
+        log.info("=> printAttributesOfQueue()");
+
+        var atts = new ArrayList<QueueAttributeName>();
+        atts.add(QueueAttributeName.APPROXIMATE_NUMBER_OF_MESSAGES);
+        atts.add(QueueAttributeName.RECEIVE_MESSAGE_WAIT_TIME_SECONDS);
+        atts.add(QueueAttributeName.VISIBILITY_TIMEOUT);
+        atts.add(QueueAttributeName.FIFO_QUEUE);
+        atts.add(QueueAttributeName.CONTENT_BASED_DEDUPLICATION);
+
+        var attributesRequest= GetQueueAttributesRequest.builder()
+                .queueUrl(queueUrl)
+                .attributeNames(atts)
+                .build();
+
+        GetQueueAttributesResponse response = sqsClient().getQueueAttributes(attributesRequest);
+
+        var queueAtts = response.attributesAsStrings();
+        for (Map.Entry<String,String> queueAtt : queueAtts.entrySet())
+            System.out.println("Key = " + queueAtt.getKey() +
+                    ", Value = " + queueAtt.getValue());
     }
 
     private String getQueueUrl() {

@@ -17,4 +17,12 @@ public class ReceiveMessageResponse {
     private String messageId;
     private MyMessage message;
     private String receiptHandle;
+    private String approximateReceiveCount;
+    private String approximateFirstReceiveTimestamp;
+    private String messageGroupId;
+    private String messageDeduplicationId;
+    private String senderId;
+    private String sentTimestamp;
+    private String sequenceNumber;
+
 }
