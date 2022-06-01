@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Service("consumerA")
 @Slf4j
-public class ConsumerA implements SqsConsumerService {
+public class ConsumerA extends AbstractConsumer implements SqsConsumerService {
 
     private final SqsClient sqsClient;
 
@@ -31,6 +31,7 @@ public class ConsumerA implements SqsConsumerService {
             SqsClient sqsClient,
             Gson gson,
             @Qualifier("queueUrl") String queueUrl) {
+        super(sqsClient, gson,queueUrl, log);
         this.sqsClient = sqsClient;
         this.queueUrl = queueUrl;
         this.gson = gson;
@@ -46,6 +47,7 @@ public class ConsumerA implements SqsConsumerService {
 
 //        final List<ChangeMessageVisibilityBatchRequestEntry> entries = new ArrayList<>();
 
+        getQueueItemCount();
 
         var responseList = sqsClient.receiveMessage(receiveMsgRequest)
                 .messages()

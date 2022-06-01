@@ -47,7 +47,7 @@ public class QueueConfiguration {
             // Enable long polling when creating a queue.
             HashMap<QueueAttributeName, String> attributes = new HashMap<>();
             attributes.put(QueueAttributeName.RECEIVE_MESSAGE_WAIT_TIME_SECONDS, "20");
-            attributes.put(QueueAttributeName.VISIBILITY_TIMEOUT, "120");
+            attributes.put(QueueAttributeName.VISIBILITY_TIMEOUT, "60");
             attributes.put(QueueAttributeName.FIFO_QUEUE, "true");
             attributes.put(QueueAttributeName.CONTENT_BASED_DEDUPLICATION,"true");
 

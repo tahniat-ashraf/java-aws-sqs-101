@@ -1,0 +1,97 @@
+###
+POST http://localhost:9099/sqs/message
+Content-Type: application/json
+
+{
+  "messageGroupId": "1",
+  "message" : {
+    "id" : "11",
+    "body" : "1"
+  }
+}
+
+###
+POST http://localhost:9099/sqs/message
+Content-Type: application/json
+
+{
+  "messageGroupId": "1",
+  "message" : {
+    "id" : "12",
+    "body" : "1"
+  }
+}
+
+###
+POST http://localhost:9099/sqs/message
+Content-Type: application/json
+
+{
+  "messageGroupId": "1",
+  "message" : {
+    "id" : "13",
+    "body" : "1"
+  }
+}
+
+###
+POST http://localhost:9099/sqs/message
+Content-Type: application/json
+
+{
+  "messageGroupId": "1",
+  "message" : {
+    "id" : "14",
+    "body" : "1"
+  }
+}
+
+###
+POST http://localhost:9099/sqs/message
+Content-Type: application/json
+
+{
+  "messageGroupId": "1",
+  "message" : {
+    "id" : "15",
+    "body" : "1"
+  }
+}
+
+####
+#POST http://localhost:9099/sqs/message
+#Content-Type: application/json
+#
+#{
+#  "messageGroupId": "2",
+#  "message" : {
+#    "id" : "21",
+#    "body" : "1"
+#  }
+#}
+#
+####
+#POST http://localhost:9099/sqs/message
+#Content-Type: application/json
+#
+#{
+#  "messageGroupId": "2",
+#  "message" : {
+#    "id" : "22",
+#    "body" : "1"
+#  }
+#}
+#
+#
+####
+#POST http://localhost:9099/sqs/message
+#Content-Type: application/json
+#
+#{
+#  "messageGroupId": "2",
+#  "message" : {
+#    "id" : "23",
+#    "body" : "1"
+#  }
+#}
+
