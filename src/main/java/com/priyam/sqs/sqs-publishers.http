@@ -3,10 +3,9 @@ POST http://localhost:9099/sqs/message
 Content-Type: application/json
 
 {
-  "messageGroupId": "1",
+  "messageGroupId": "A",
   "message" : {
-    "id" : "11",
-    "body" : "1"
+    "id" : "A1"
   }
 }
 
@@ -15,10 +14,9 @@ POST http://localhost:9099/sqs/message
 Content-Type: application/json
 
 {
-  "messageGroupId": "1",
+  "messageGroupId": "A",
   "message" : {
-    "id" : "12",
-    "body" : "1"
+    "id" : "A2"
   }
 }
 
@@ -27,10 +25,9 @@ POST http://localhost:9099/sqs/message
 Content-Type: application/json
 
 {
-  "messageGroupId": "1",
+  "messageGroupId": "A",
   "message" : {
-    "id" : "13",
-    "body" : "1"
+    "id" : "A3"
   }
 }
 
@@ -39,10 +36,9 @@ POST http://localhost:9099/sqs/message
 Content-Type: application/json
 
 {
-  "messageGroupId": "1",
+  "messageGroupId": "A",
   "message" : {
-    "id" : "14",
-    "body" : "1"
+    "id" : "A4"
   }
 }
 
@@ -51,10 +47,9 @@ POST http://localhost:9099/sqs/message
 Content-Type: application/json
 
 {
-  "messageGroupId": "1",
+  "messageGroupId": "A",
   "message" : {
-    "id" : "15",
-    "body" : "1"
+    "id" : "A5"
   }
 }
 

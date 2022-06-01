@@ -4,6 +4,7 @@ package com.priyam.sqs.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.priyam.sqs.model.PublishSqsMessageRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.services.sqs.SqsClient;
@@ -12,6 +13,7 @@ import software.amazon.awssdk.services.sqs.model.SendMessageResponse;
 
 
 @Service
+@Slf4j
 public class SqsPublisherServiceImpl implements SqsPublisherService {
 
     private final SqsClient sqsClient;
@@ -41,6 +43,8 @@ public class SqsPublisherServiceImpl implements SqsPublisherService {
                 .messageDeduplicationId(request.getMessage().getId())
                 .messageGroupId(request.getMessageGroupId())
                 .build();
+
+        log.info("sendMsgRequest {}",sendMsgRequest);
 
         return sqsClient.sendMessage(sendMsgRequest);
 

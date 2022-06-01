@@ -14,6 +14,5 @@ public class MyMessage {
 
     @JsonProperty("id")
     private String id;
-    @JsonProperty("body")
-    private String body;
+
 }
